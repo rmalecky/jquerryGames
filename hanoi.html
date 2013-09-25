@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+
+    ul {
+      width: 310px;
+      height: 330px;
+      margin: 0;
+      padding: 0;
+      border: 5px solid black;
+      background: gray;
+
+      float: left;
+    }
+
+    ul:after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    li {
+      margin: auto;
+      padding: 0;
+      list-style: none;
+      width: 0px;
+      height: 100px;
+    }
+
+    .small {
+      width: 100px;
+      border: 5px solid red;
+    }
+
+    .medium {
+      width: 200px;
+      border: 5px solid red;
+    }
+
+    .large {
+      width: 300px;
+      border: 5px solid red;
+    }
+
+    .clicked {
+      background: yellow;
+    }
+    </style>
+  </head>
+
+  <body>
+    <ul id="0">
+      <li class="small"></li>
+      <li class="medium"></li>
+      <li class="large"></li>
+    </ul>
+    <ul id="1">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul id="2">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+
+
+    <script src="hanoi.js"></script>
+    <script src='jquery-1.10.2.js'></script>
+    <script>
+
+    var game = new Hanoi.Game();
+    var isFirstClick = true;
+    var towerOneId, towerTwoId;
+
+    game.run();
+
+    $(document).ready(function(){
+      $('ul').on('click', function(event){
+        if (isFirstClick) {
+          towerOneId = parseInt($(this).attr("id"));
+          isFirstClick = false;
+        } else {
+          towerTwoId = parseInt($(this).attr("id"));
+          console.log(towerOneId);
+          console.log(towerTwoId);
+          game.takeTurn(towerOneId,towerTwoId);
+          isFirstClick = true;
+        }
+
+      });
+    });
+
+    </script>
+  </body>
+</html>
