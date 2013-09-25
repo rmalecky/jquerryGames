@@ -103,6 +103,7 @@
     } else {
       this.player = Game.marks[0];
     }
+    alert("player " + this.player + " turn");
   };
 
   Game.prototype.valid = function (pos) {
@@ -157,32 +158,34 @@
 
   Game.prototype.run = function () {
     var game = this;
-    game.turn(function(){
-      if (game.winner()) {
-        console.log("Someone won!");
-        // READER.close();
-      } else {
-        // game.printBoard();
-        game.run();
-      }
-    });
-  }
-
-  Game.prototype.turn = function (callback) {
-    var game = this;
     alert("player " + this.player + " turn");
-
     $('div').on("click", function(event){
       var strCoords = $(this).attr('data-id');
-      var coords = strCoords.split(' ');
-      if (game.valid(coords)) {
-        game.move(coords, $(this));
-        callback();
-      } else {
-        console.log("Invalid coords!");
-        game.turn(callback);
-      }
+      game.turn(strCoords, $(this), function(){
+        if (game.winner()) {
+          alert("Someone won!");
+          // READER.close();
+        } else {
+          // game.printBoard();
+        }
+      });
     })
+  }
+
+  Game.prototype.turn = function (strCoords, div, callback) {
+    var game = this;
+
+
+    var coords = strCoords.split(' ');
+    if (game.valid(coords)) {
+      game.move(coords, div);
+      callback();
+    } else {
+      console.log("Invalid coords!");
+      game.turn(callback);
+    }
+
+
 
 
   }
