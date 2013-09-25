@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  </head>
+
+  <body>
+
+    <script  src="jquery-1.10.2.js"></script>
+    <script  src="underscore.js"></script>
+    <script  src='ticTacToe.js'> </script>
+    <script>
+
+        $(document).ready(function() {
+          var game = new TTT.Game();
+          game.run();
+
+        $('div').on("click", function(event){
+           var strCoords = $(this).attr('data-id');
+        });
+
+
+
+    </script>
+
+    <table>
+      <tr>
+        <td>
+          <div data-id='0 0'></div>
+        </td>
+        <td>
+          <div data-id='0 1'></div>
+        </td>
+        <td>
+          <div data-id='0 2'></div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div data-id='1 0'></div>
+        </td>
+        <td>
+          <div data-id='1 1'></div>
+        </td>
+        <td>
+          <div data-id='1 2'></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div data-id='2 0'></div>
+        </td>
+        <td>
+          <div data-id='2 1'></div>
+        </td>
+        <td>
+          <div data-id='2 2'></div>
+        </td>
+      </tr>
+
+    </table>
+  </body>
+</html>
